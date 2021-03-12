@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Lagos Apapa Port</title>
+  <meta content="" name="descriptison">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  {% load static %}
+
+  <link href="{% static 'assets/img/apple-touch-icon.png' %}" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Poppins:300,300i,400,400i,600,600i,700,700i|Satisfy|Comic+Neue:300,300i,400,400i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/icofont/icofont.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/animate.css/animate.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/venobox/venobox.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/owl.carousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
+
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-md bg-purple navbar-dark" style="background-color: purple;">
+          <!-- Brand -->
+          <a class="navbar-brand" href="{% url 'home' %}">Lagos Apapa Port</a>
+
+          <!-- Toggler/collapsibe Button -->
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <!-- Navbar links -->
+          <div class="collapse navbar-collapse" id="collapsibleNavbar">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'home' %}">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'ship:overview' %}">Dock</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'contact:create' %}">Contact</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'about' %}">About</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'services:all' %}">Services</a>
+              </li>
+              {% if user.is_authenticated %}
+
+
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'accounts:profile' %}">Profile</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'accounts:logout' %}">Logout</a>
+              </li>
+
+
+              {% else %}
+
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'accounts:login' %}">Login</a>
+                <a class="nav-link" href="{% url 'accounts:sign_up' %}">Sign Up</a>
+              </li>
+
+
+              {% endif %}
+            </ul>
+          </div>
+        </nav>
+    </header>
+    {% block dock-details %}
+    {% endblock %}
+    {% block content %}
+    {% endblock %}
+
+    <!-- ======= Footer ======= -->
+  <footer id="footer">
+
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-6 col-md-6 footer-contact">
+            <h3>Lagos Apapa Port</h3>
+            <p>
+              Federal Polytechnic Ilaro, <br>
+              Ilaro, Ogun State<br>
+              Nigeria <br><br>
+              <strong>Phone:</strong> +234 903 646 1479<br>
+              <strong>Email:</strong> oluwatosinjosephdurodola@gmail.com<br>
+            </p>
+          </div>
+
+
+          <div class="col-lg-6 col-md-6 footer-links">
+            <h4>Useful Links</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a href="{% url 'home' %}">Home</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="{% url 'about' %}">About</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="{% url 'contact:create' %}">Contact</a>
+              <li><i class="bx bx-chevron-right"></i> <a href="{% url 'services:all' %}">Services</a>
+              {% if user.is_authenticated %}
+                <li><i class="bx bx-chevron-right"></i> <a href="{% url 'accounts:profile' %}">Profile</a></li>
+                <li><i class="bx bx-chevron-right"></i> <a href="{% url 'accounts:logout' %}">Log Out</a></li>
+
+              {% else %}
+                <li><i class="bx bx-chevron-right"></i> <a href="{% url 'accounts:sign_up' %}">Sign Up</a></li>
+                <li><i class="bx bx-chevron-right"></i> <a href="{% url 'accounts:login' %}">Log In</a></li>
+              {% endif %}
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container footer-bottom clearfix py-3">
+      <div class="copyright">
+        &copy; Copyright <strong><span>FPI ILARO</span></strong>. All Rights Reserved
+      </div>
+      <div class="credits">
+        Designed by <a href="https://bootstrapmade.com/">Oluwatosin</a>
+      </div>
+    </div>
+  </footer><!-- End Footer -->
+
+
+
+    <!-- Vendor JS Files -->
+  <script src="{% static 'assets/vendor/jquery/jquery.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/jquery.easing/jquery.easing.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/php-email-form/validate.js' %}"></script>
+  <script src="{% static 'assets/vendor/jquery-sticky/jquery.sticky.js' %}"></script>
+  <script src="{% static 'assets/vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/venobox/venobox.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/owl.carousel/owl.carousel.min.js' %}"></script>
+
+  <!-- Template Main JS File -->
+  <script src="{% static 'assets/js/main.js' %}"></script>
+
+
+  <a href="#" id="scroll-to-top" class="hvr-radial-out"><i class="fa fa-angle-up"></i></a>
+
+</body>
+</html>

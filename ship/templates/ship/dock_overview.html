@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+{% block page-title %}
+    <div class="medium-3 columns">
+        DOCK OVERVIEW
+    </div>
+{% endblock %}
+
+{% block content %}
+  <div class="container">
+
+
+      {# Table: Offloaded table #}
+      <!-- beginning of table dock --->
+      <div class="my-3 mx-2">
+          <table class="table able-striped table-bordered table-hover">
+              <caption>List of Dock</caption>
+              <thead class="thead-dark">
+                  <tr>
+                      <th>DOCK ID</th>
+                      <th>DOCK NAME</th>
+                      <th>SHIP ID</th>
+                      <th>SHIP NAME</th>
+                      <th class="text-center">CARGO HAZARDS</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  {% for item in data %}
+                  <tr onclick="location.href='{% url 'ship:dock_detail' item.dock.id %}';">
+                      <td>
+                          {{ item.dock.id }}
+                      </td>
+                      <td>
+                          {% if item.dock.name %}
+                              {{ item.dock.name }}
+                          {% else %}
+                              --
+                          {% endif %}
+                      </td>
+                      <td>
+                          {% if item.dock.docked_ship.id %}
+                              {{ item.dock.docked_ship.id }}
+                          {% else %}
+                              --
+                          {% endif %}
+                      </td>
+                      <td>
+                          {% if item.dock.docked_ship.name %}
+                              {{ item.dock.docked_ship.name }}
+                          {% else %}
+                              --
+                          {% endif %}
+                      </td>
+                      <td class="symbols-cell text-center">
+                          {% for hazard in item.hazards %}
+                              <i class="fa {{ hazard.web_icon }} fa-fw" aria-hidden="true"></i>
+                          {% empty %}
+                              --
+                          {% endfor %}
+                      </td>
+                  </tr>
+                  {% empty %}
+                      <tr class="non-link-row">
+                          <td class="text-center" colspan="5">
+                              There are no docks.
+                          </td>
+                      </tr>
+                  {% endfor %}
+              </tbody>
+          </table>
+      </div>
+      <!-- end of table dock --->
+  </div>
+{% endblock %}

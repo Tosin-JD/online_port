@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Sign Up</li>
+        </ol>
+    </nav>
+    
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-6">
+            <form action="{% url 'accounts:sign_up' %}" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-group px-3 py-3 mx-3 my-3 border shadow rounded">
+                    {% for item in form %}
+                        <div>
+                            <label>{{ item.label_tag }}</label>
+                            {{ item }}
+                        </div>
+                    {% endfor %}
+                <input type="submit" class="btn btn-primary form-control my-3" value="Sign in">
+                
+                <!-- login link -->
+                <a class="text-success" href="{% url 'accounts:login' %}">Login Instead</a>
+            
+                
+                </div>
+            </form> 
+            
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+</div>
+
+
+
+{% endblock %}

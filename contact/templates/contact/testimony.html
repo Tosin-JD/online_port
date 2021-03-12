@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+  <!-- ======= Hero Section ======= -->
+  {% load static %}
+  
+  
+
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Testimony</li>
+        </ol>
+    </nav>
+    
+<!-- section -->
+	
+	<section class="">
+	  <div class="container">
+	      <div class="row">
+		      <div class="col-12">
+			     <div class="full">
+				     <h3>Send us your testimony</h3>
+				     <p class="text-info">Please fill in the form and send it to record your testimony</p>
+				 </div>
+			  </div>
+		  </div>
+	  </div>
+	</section>
+	
+	<!-- end section -->
+   
+<div class="container">
+    
+    
+    <div class="row">
+        
+    <form action="{% url 'contact:testimony' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+     
+        <div class="col-sm-3"></div>
+        <div class="col-sm-6">
+            <div class="form-group py-3 px-3 border rounded shadow">
+                {% for item in form %}
+                   <label>{{ item.label_tag }}</label>
+                   {{ item }}
+                {% endfor %}
+            
+                <input class="form-control btn btn-primary my-3" type="submit" value="Submit">
+
+            </div>
+        </div>
+        <div class="col-sm-3"></div>
+    </form>
+        
+    </div>
+</div>
+{% endblock %}
+
+

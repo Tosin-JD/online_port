@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+
+    {% block content %}
+    
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Login</li>
+        </ol>
+    </nav>
+    
+    <div class="container">
+        
+    <div class="row">
+        <div class="col-sm-3">
+            
+        </div>
+        <div class="col-sm-6">
+            <div class="my-3 mx-3 py-3 px-3 bg-light rounded shadow">
+                
+                
+                {% if form.errors %}
+                    <p>Your username and password didn't match. Please try again.</p>
+                {% endif %}
+        
+        {% if next %}
+           {% if user.is_authenticated %}
+               <p>Your account doesn't have access to this page. To proceed,
+                  please login with an account that has access.</p>
+            {% else %}
+               <p>Please login to see this page.</p>
+            {% endif %}
+        {% endif %}
+        <form method="post" action="{% url 'login' %}">
+            {% csrf_token %}
+        
+        <div class="form-group">
+            <div class="px-2 py-2">
+                <h3 class="text-primary">Login</h3>
+                <p class="text-info">Enter your username and password to login</p>
+            </div>
+            <label>Usename</label><br>
+            <input type="text" name="username" class="form-control my-3" placeholder="Username">
+            <label>Password</label><br>
+            <input type="password" name="password" class="form-control my-3" placeholder="Password">
+
+            <input type="submit" value="login" class="btn btn-primary form-control my-3">
+            
+            <!-- sign up link -->
+            <a class="text-success" href="{% url 'accounts:sign_up' %}">Sign Up Instead</a>
+            
+            
+            <input type="hidden" name="next" value="{{ next }}">
+        </div>
+        </form>
+                
+                
+                
+                
+                
+            </div>
+        </div>
+        <div class="col-sm-3">
+            
+        </div>
+        
+        
+    </div>
+    </div>
+        
+{% endblock %}
+
+

@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Book A Table</li>
+        </ol>
+    </nav>
+    
+
+
+<div class="container">
+    <!-- ======= Book A Table Section ======= -->
+    <section id="book-a-table" class="book-a-table">
+      <div class="container">
+
+        <div class="section-title">
+          <h2>Book a <span>Table</span></h2>
+          <p>Please fill in the table to book for a table at Merit. We will send
+          you a reply to confirm your booking.</p>
+        </div>
+
+        <form action="{% url 'contact:book' %}" method="post" role="form">
+          {% csrf_token %}
+          <div class="form-row">
+            <div class="col-lg-4 col-md-6 form-group">
+              <input type="text" name="name" class="form-control my-3" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
+              <div class="validate"></div>
+            </div>
+            <div class="col-lg-4 col-md-6 form-group">
+              <input type="email" class="form-control my-3" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email">
+              <div class="validate"></div>
+            </div>
+            <div class="col-lg-4 col-md-6 form-group">
+              <input type="text" class="form-control my-3" name="phone_number" id="phone" placeholder="Your Phone" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
+              <div class="validate"></div>
+            </div>
+            <div class="col-lg-4 col-md-6 form-group">
+              <input type="text" name="date" class="form-control my-3" id="date" placeholder="Date" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
+              <div class="validate"></div>
+            </div>
+            <div class="col-lg-4 col-md-6 form-group">
+              <input type="text" class="form-control my-3" name="time" id="time" placeholder="Time" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
+              <div class="validate"></div>
+            </div>
+            <div class="col-lg-4 col-md-6 form-group">
+              <input type="number" class="form-control my-3" name="number_of_people" id="people" placeholder="# of people" data-rule="minlen:1" data-msg="Please enter at least 1 chars">
+              <div class="validate"></div>
+            </div>
+          </div>
+          <div class="form-group">
+            <textarea class="form-control my-3" name="message" rows="5" placeholder="Message"></textarea>
+            <div class="validate"></div>
+          </div>
+          
+          <div class="text-center"><input class="btn btn-primary" type="submit" value="Send Message"></div>
+        </form>
+
+      </div>
+    </section><!-- End Book A Table Section -->
+</div>
+{% endblock %}
+
+

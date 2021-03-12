@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+
+{% block content %}
+   <nav aria-label="breadcrumb">
+       <ol class="breadcrumb">
+           <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+           <li class="breadcrumb-item"><a href="{% url 'services:all' %}"></a>Services</li>
+           <li class="breadcrumb-item active" aria-current="page">{{ object.name }}</li>
+       </ol>
+   </nav>
+   <main id="main">
+       <div class="container">
+           <div class="row">
+               <div class="col-sm-12">
+                   <div class="py-2 my-2 bg-purple">
+                       <h2 class="text-center text-tertiary text-white">
+                            {{ object.name }}
+                        </h2>   
+                   </div>
+               </div>
+               <div class="col-sm-12">
+               <!-- image and bullet -->
+                   <div class="row">
+                       <div class="col-sm-9">
+                           <div class="px-3">
+                               <img class="img-fluid" src="{{ object.image.url }}" alt="Service Image" width="400" />
+                           </div>
+                       </div>
+                       <div class="col-sm-3">
+                           <div class="">
+                               <ul class="list-group">
+                                   <li class="px-3 py-3 mx-3 my-3 bg-purple-light rounded">
+                                       {{ object.bullet_one }}
+                                   </li>
+                                   <li class="px-3 py-3 mx-3 my-3 bg-purple-light rounded">
+                                       {{ object.bullet_two }}
+                                   </li>
+                                   <li class="px-3 py-3 mx-3 my-3 bg-purple-light rounded">
+                                       {{ object.bullet_three }}
+                                   </li>
+                               </ul>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+               <div class="col-sm-12">
+               <!-- first paragraph -->
+                    <div>
+                        <p>{{ object.description}}</p>
+                    </div>
+               </div>
+               <div class="col-sm-12">
+                  <!-- secons and third image -->
+                  <div class="row">
+                      <div class="col-sm-6">
+                          <div class="py-2 px-2 mx-2 my-2">
+                              <img class="img-fluid" src="{{ object.second_image.url}}" alt="second image" />
+                          </div>
+                      </div>
+                      <div class="col-sm-6">
+                          <div class="py-2 px-2 mx-2 my-2">
+                              <img class="img-fluid" src="{{ object.third_image.url}}" alt="third image" />
+                          </div>
+                      </div>
+                  </div>
+               </div>
+               <div class="col-sm-12">
+                   <!-- second and third paragraph -->
+                  <div class="row">
+                      <div class="col-sm-6">
+                          <div class="py-2 px-2 mx-2 my-2">
+                              <p class="text-secondary" name="">{{ object.second_description}}</p>
+                          </div>
+                      </div>
+                      <div class="col-sm-6">
+                          <div class="py-2 px-2 mx-2 my-2">
+                              <p class="text-secondary" name="">{{ object.third_description}}</p>
+                          </div>
+                      </div>
+                  </div>
+               </div>
+           </div>
+           <!-- end row -->
+       </div>
+       <!-- end container -->
+   </main>
+
+{% endblock %}
+
+
+

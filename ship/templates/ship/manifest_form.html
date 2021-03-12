@@ -1,0 +1,61 @@
+{% extends 'accounts/profile.html' %}
+
+
+{% block side_bar %}
+    <li class="active">
+		<a href="{% url 'ship:manifest_create' %}">
+		<i class="glyphicon glyphicon-home"></i>
+		Create Dock Manifest</a>
+	</li>
+	<li class="">
+		<a href="{% url 'ship:manifest_list' %}">
+		<i class="glyphicon glyphicon-user"></i>
+		Dock Manifests </a>
+	</li>
+	<li>
+		<a href="{% url 'ship:overview' %}" target="_blank">
+		<i class="glyphicon glyphicon-ok"></i>
+		 Docks List </a>
+	</li>
+	<li>
+		<a href="{% url 'ship:ships' %}" target="_blank">
+		<i class="glyphicon glyphicon-ok"></i>
+		 Ship List </a>
+	</li>
+{% endblock %}
+
+
+{% block profile_content %}
+
+
+    
+<div class="py-2 px-2">
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-7">
+            <form method="POST">
+                {% csrf_token %}
+                <div class="form-group px-3 py-3 mx-3 my-3 border shadow rounded">
+                    {% for item in form %}
+                        <div>
+                            <label>{{ item.label_tag }}</label>
+                            {{ item }}
+                        </div>
+                    {% endfor %}
+                <input type="submit" class="btn btn-primary form-control my-3">
+                
+                <!-- login link -->
+                <a class="text-success" href="{% url 'home' %}">Back to Home</a>
+            
+                
+                </div>
+            </form> 
+            
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+</div>
+
+
+
+{% endblock %}

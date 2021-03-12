@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Contact Us</li>
+        </ol>
+    </nav>
+
+<div class="container">
+    <div class="row">
+         <div class="col-sm-3"></div>
+         <div class="col-sm-6">
+				    <form action="{% url 'contact:create' %}" method="post">
+				        {% csrf_token %}
+	            <div class="form-group py-3 px-3 border rounded shadow">
+	                <input class="form-control my-3" type='text' name="name" placeholder="Name">
+	                <input class="form-control my-3" type="text" name="email" placeholder="Email">
+	                <input class="form-control my-3" type='text' name="subject" placeholder="Subject">
+	                <textarea class="form-control my-3" type='text' name="message" placeholder="Message"></textarea>
+	                <input class="form-control btn btn-primary my-3" type="submit" value="Submit">
+							</div>
+						</form>
+        </div>
+			  <div class="col-sm-3"></div>
+        <div class="col-sm-12">
+					<div class="info-wrap">
+	          <div class="row">
+	            <div class="col-sm-3 info">
+	              <h4>Location:</h4>
+	              <p>Orita Street,<br>Ilaro, Ogun state, Nigeria.</p>
+	            </div>
+
+	            <div class="col-lg-3 col-md-6 info mt-4 mt-lg-0">
+	              <i class="icofont-clock-time icofont-rotate-90"></i>
+	              <h4>Open Hours:</h4>
+	              <p>Monday-Saturday:<br>11:00 AM - 09:00 PM</p>
+	            </div>
+
+	            <div class="col-lg-3 col-md-6 info mt-4 mt-lg-0">
+	              <i class="icofont-envelope"></i>
+	              <h4>Email:</h4>
+	              <p>oluwatosinjosephdurodola@gmail.com</p>
+	            </div>
+
+	            <div class="col-lg-3 col-md-6 info mt-4 mt-lg-0">
+	              <i class="icofont-phone"></i>
+	              <h4>Call:</h4>
+	              <p>+234 903 646 1479
+	            </div>
+          </div>
+        </div>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

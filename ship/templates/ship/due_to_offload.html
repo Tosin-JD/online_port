@@ -1,0 +1,67 @@
+
+<style>
+   .bg-light-red{
+      background-color:#ffcccb;
+   }
+   .bg-light-green{
+      background-color: lightgreen;
+   }
+   .bg-light-blue{
+      background-color: lightblue;
+   }
+</style>
+
+<div class="py-3 px-3">
+    <div class="row">
+        <div class="col-sm-12">
+            <h3>Dock Manifests</h3>
+            <table class="table table-responsive table-bordered table-striped table-hover">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>S/N</th>
+                        <th>Dock</th>
+                        <th>Ship</th>
+                        <th>Arrival Time</th>
+                        <th>Departure Time</th>
+                        <th>Status</th>
+                        <th>Offload</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in dock_manifest %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ item.dock }}</td>
+                        <td>{{ item.ship }}</td>
+                        <td>{{ item.arrival }}</td>
+                        <td>{{ item.departure }}</td>
+                        {% if item.current_position == 'yy' %}
+                            <td class="bg-light-red">
+                              Not Off Loaded
+                            </td>
+                        {% elif item.current_position == 'dd' %}
+                            <td class="bg-light-blue">
+                              Due To Offload
+                            </td>
+                        {% elif  item.current_position == 'oo' %}
+                            <td class="bg-light-green">
+                              Offloaded
+                            </td>
+                        {% endif %}
+                        <td>
+                          {% if item.is_due_offload %}
+                            <a href="{% url 'ship:offload' item.pk %}" class="btn btn-primary">Offload</a>
+                          {% endif %}
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="6" class="text-secondary">No dock manifest yet.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+          </div>
+        </div>
+    </div>
+</div>

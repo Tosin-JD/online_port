@@ -1,0 +1,125 @@
+{% extends 'accounts/profile.html' %}
+
+
+{% block side_bar %}
+    <li class="">
+		<a href="{% url 'ship:manifest_create' %}">
+		<i class="glyphicon glyphicon-home"></i>
+		Create Dock Manifest</a>
+	</li>
+	<li class="active">
+		<a href="{% url 'ship:manifest_list' %}">
+		<i class="glyphicon glyphicon-user"></i>
+		Dock Manifests </a>
+	</li>
+	<li>
+		<a href="{% url 'ship:overview' %}" target="_blank">
+		<i class="glyphicon glyphicon-ok"></i>
+		 Docks List </a>
+	</li>
+	<li>
+		<a href="{% url 'ship:ships' %}" target="_blank">
+		<i class="glyphicon glyphicon-ok"></i>
+		 Ships List </a>
+	</li>
+{% endblock %}
+
+
+{% block profile_content %}
+    <div class="py-3 px-3">
+        <div class="row">
+            <div class="col-sm-12">
+                <h3>All Dock Manifests</h3>
+                <table class="table table-responsive table-bordered table-striped table-hover">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>S/N</th>
+                            <th>Dock</th>
+                            <th>Ship</th>
+                            <th>Arrival Time</th>
+                          </tr>
+                            <th>Departure Time</th>
+                    </thead>
+                    <tbody>
+                        {% for item in object_list %}
+                          <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td>{{ item.dock }}</td>
+                            <td>{{ item.ship }}</td>
+                            <td>{{ item.arrival }}</td>
+                          </tr>
+                            <td>{{ item.departure }}</td>
+                        {% empty %}
+                        <tr>
+                            <td colspan="6" class="text-secondary">No dock manifest yet.</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+                <div class="">
+                    <h3>Offloaded Manifests</h3>
+                    <table class="table table-responsive table-bordered table-striped table-hover">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>S/N</th>
+                                <th>Dock</th>
+                                <th>Ship</th>
+                                <th>Arrival Time</th>
+                                <th>Departure Time</th>
+                                <th>Offload Time</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in offloaded %}
+                            <tr>
+                                <td>{{ forloop.counter }}</td>
+                                <td>{{ item.dock }}</td>
+                                <td>{{ item.ship }}</td>
+                                <td>{{ item.arrival }}</td>
+                                <td>{{ item.departure }}</td>
+                                <td>{{ item.offload }}</td>
+                            </tr>
+                            {% empty %}
+                            <tr>
+                                <td colspan="6" class="text-secondary">No dock manifest yet.</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                  </table>
+                </div>
+
+                <div class="">
+                    <h3>Yet To Offload Manifests</h3>
+                    <table class="table table-responsive table-bordered table-striped table-hover">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>S/N</th>
+                                <th>Dock</th>
+                                <th>Ship</th>
+                                <th>Arrival Time</th>
+                                <th>Departure Time</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in not_offloaded %}
+                            <tr>
+                                <td>{{ forloop.counter }}</td>
+                                <td>{{ item.dock }}</td>
+                                <td>{{ item.ship }}</td>
+                                <td>{{ item.arrival }}</td>
+                                <td>{{ item.departure }}</td>
+                            </tr>
+                            {% empty %}
+                            <tr>
+                                <td colspan="6" class="text-secondary">No dock manifest yet.</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                  </table>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

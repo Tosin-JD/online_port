@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'contacts:home' %}">Contacts</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{ object.name }} Contact</li>
+        </ol>
+    </nav>
+
+
+<div class="container">
+    <div class="mx-3 my-3 py-3 px-3">
+        <h2>{{object.name}}</h2>
+        <h3 class="text-info"><em>{{ object.email }}</em></h3>
+        <h3>{{ object.subject }}</h3>
+        <p>{{ object.message }}</p>
+    </div>
+</div>
+{% endblock %}
+
+

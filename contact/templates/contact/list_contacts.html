@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+
+
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Contacts</li>
+        </ol>
+    </nav>
+
+
+
+<div class="container">
+    <div class="row mx-3 my-3">
+        {% for item in object_list %}
+            <div>
+                <div><a href="{% url 'contact:detail' item.pk %}">
+                    <div class="border rounded shadow mx-3 my-3 py-2 px-3">
+                        <h3>{{ item.name }}</h3>
+                        <p class="text-primary"><em>{{ item.email }}</em></p>
+                        <p class=""><b>{{ item.subject }}</b></p>
+                        <p class="text-secondary"><em>{ item.message }</em></p>
+                    </div>
+                    
+                </a></div>
+            </div>
+        {% empty %}
+         <h1 class="text-danger">No Contact in the table yet.</h1>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
+
+

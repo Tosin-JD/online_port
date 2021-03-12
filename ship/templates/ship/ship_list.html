@@ -1,0 +1,63 @@
+{% extends 'accounts/profile.html' %}
+
+
+{% block side_bar %}
+    <li class="">
+		<a href="{% url 'ship:manifest_create' %}">
+		<i class="glyphicon glyphicon-home"></i>
+		Create Dock Manifest</a>
+	</li>
+	<li class="">
+		<a href="{% url 'ship:manifest_list' %}">
+		<i class="glyphicon glyphicon-user"></i>
+		Dock Manifests </a>
+	</li>
+	<li>
+		<a href="{% url 'ship:overview' %}" target="_blank">
+		<i class="glyphicon glyphicon-ok"></i>
+		 Docks List </a>
+	</li>
+	<li class="active">
+		<a href="{% url 'ship:ships' %}" target="_blank">
+		<i class="glyphicon glyphicon-ok"></i>
+		Ships List </a>
+	</li>
+{% endblock %}
+
+
+{% block profile_content %}
+    <div class="py-3 px-3">
+        <div class="row">
+            <div class="col-sm-10">
+                <h3>Ships</h3>
+                <table class="table table-responsive table-bordered table-striped table-hover">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>S/N</th>
+                            <th>Image</th>
+                            <th>Name</th>
+                            <th>Captain</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in object_list %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td><img src="{{ item.image.url }}" height="100"></td>
+                            <td>{{ item.name }}</td>
+                            <td>{{ item.captain }}</td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="6" class="text-secondary">No ship registered yet.</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-sm-2">
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

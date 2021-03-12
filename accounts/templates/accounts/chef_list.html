@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Chefs</li>
+  </ol>
+</nav>
+
+<main id="main">
+        <!-- ======= Chefs Section ======= -->
+    <section id="chefs" class="chefs">
+      <div class="container">
+
+        <div class="section-title">
+          <h2>Our Proffesional <span>Chefs</span></h2>
+          <p>Our chefs are highly trained with state of the art technology.</p>
+        </div>
+
+        <div class="row">
+            
+            {% for chef in chef_list %}
+
+          <div class="col-lg-4 col-md-6">
+            <div class="member">
+              <div class="pic"><img src="{{ chef.user.profile_pic.url }}" class="img-fluid" alt=""></div>
+              <div class="member-info">
+                <h4>{{ chef.first_name }} {{ chef.last_name }}</h4>
+                <span>{{ chef.position }}</span>
+                
+              </div>
+            </div>
+          </div>
+          {% empty %}
+          <div class="container">
+              <div class="border py-3 px-3">
+                 <h3 class="text-warning">No Item in the Database yet. <span class="text-danger">Consult the admin.</span></h3>
+             </div>
+          </div>
+             
+          {% endfor %}
+        </div>
+
+      </div>
+    </section><!-- End Chefs Section -->
+</main>
+
+{% endblock %}
+
